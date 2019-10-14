@@ -1,0 +1,133 @@
+---
+output: github_document
+bibliography: biblio.bib
+csl: apa.csl
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse=TRUE
+)
+```
+
+
+<!-- Este .md fue generado a partir del .Rmd homónimo. Edítese el .Rmd -->
+
+# Mi primer RMarkdown
+
+Si estás leyendo este documento, seguramente ya aceptaste la invitación que recibiste por correo. Si por el contrario no has aceptado la invitación o no la has recibido aún, acéptala o pide al profesor que te la reenvíe, para que leas desde tu propio repo.
+
+Por otra parte, clona tu repo localmente usando RStudio. Si no te acuerdas de cómo hacerlo, usa como referencia la guía [¿Cómo realizar una asignación?](https://github.com/maestria-geotel-201902/material-de-apoyo/blob/master/ref/como-hacer-una-asignacion.md)
+
+Posteriormente, estudia la [Guía mínima de RMarkdown](https://github.com/maestria-geotel-201902/material-de-apoyo/blob/master/ref/guia-minima-de-rmarkdown.md). Puedes echarle un vistazo general a la guía, y luego utilizarla como referencia mientras vas realizando esta asignación.
+
+
+## Tu número aleatorio asignado
+
+En la tabla a continuación verás las direcciones de correo electrónico de cada estudiante de la maestría, abreviadas usando sus 5 primeros caracteres (se excluyen los caracteres '.' y '_'). Localiza tu abreviatura y toma nota de tu número aleatorio asignado, porque lo usarás para cumplir los mandatos que verás en este mismo documento.
+
+```{r}
+ # abreviatura aleatorios
+ #       acade        144
+ #       agrie         79
+ #       aleir        118
+ #       arqco         77
+ #       cindy         94
+ #       franc         17
+ #       geora        151
+ #       hoyod        176
+ #       ingan         26
+ #       ingdi         15
+ #       itac9        101
+ #       ivanv        143
+ #       lbine        116
+ #       leona          9
+ #       magda         92
+ #       maryj         87
+ #       masue         31
+ #       mmvol        160
+ #       naui2        127
+ #       rober         98
+ #       wilne         54
+ #       yoenn        115
+```
+
+## Archivo `README.Rmd`
+
+A partir de este punto, necesitarás editar el archivo `README.Rmd` desde RStudio (recalco, el archivo que termina en `.Rmd`), porque tendrás que colocar tus respuestas en dicho archivo.
+
+* **Abre el archivo `README.Rmd`** (recalco, el archivo que termina en `.Rmd`) y mantenlo abierto hasta finalizar la asignación. Se te solicitará escribir código de R en este archivo, y deberás ejecutarlo en la consola para comprobar que no hay errores. Coloca tu respuesta sustituyendo los puntos suspensivos (`...`) que encontrarás dentro de los bloques de código. Un bloque comienza por algo tal que esto `    ```{r}    ` y termina con esto `    ```    `.
+
+* Tal como explica la [Guía mínima de RMarkdown](https://github.com/maestria-geotel-201902/material-de-apoyo/blob/master/ref/guia-minima-de-rmarkdown.md), asegúrate que la **opción `Chunk Output in Console` de la rueda dentada está marcada** con un aspa (cotejo).
+
+## Conjunto de datos `worldbank_df`
+
+`worldbank_df` es un conjunto de datos globales en forma de un `data.frame`, disponible en R mediante el paquete `spData`, que contiene información de los países recopilada por el Banco Mundial. Cada fila corresponde a un país (177), y cada columna es un atributo o variable (7)
+
+* **Carga el paquete `spData`**. Recuerda que R es sensible a las mayúsculas.
+
+```{r}
+library(...) #Borra los ... (ni más ni menos) y escribe el nombre del paquete.
+```
+
+>El símbolo `#` **dentro los bloques de código** precede comentarios. R ignora lo escrito a partir de `#`. Verás que ocasionalmente usaré `#` para colocar pistas sobre lo solicitado.
+
+> Tal como explica la [Guía mínima de RMarkdown](https://github.com/maestria-geotel-201902/material-de-apoyo/blob/master/ref/guia-minima-de-rmarkdown.md), prueba tu código línea a línea. Configura la ejecución de código en la consola de R, marcando la opción `Chunk Output in Console` de la rueda dentada (barra de herramientas de archivo `.Rmd`). Así, cuando presiones *Run>Run Selected Line(s)* (o `Ctrl+Enter`) para ejecutar la o las líneas seleccionadas. Tu código se ejecutará en la consola de R y en ésta verás los resultados.
+
+* **Carga el conjunto de datos `worldbank_df` a memoria**.
+
+```{r}
+data(...)
+```
+
+* **Imprime en pantalla `worldbank_df`**. Escribe el nombre del objeto para que se despliegue. No olvides ejecutarlo en la consola para probar que funciona.
+
+```{r}
+...
+```
+
+Si lograste ver un `data.frame` con varias columnas y filas, significa que conseguiste cargar e "imprimir" correctamente el objeto `worldbank_df`.
+
+* Para conocer más sobre un objeto en R, usa la función `str` (*structure*). **Explora la estructura de `worldbank_df`**.
+
+```{r}
+str(...)
+```
+
+## Varios filtros a `worldbank_df`
+
+* **Filtra `worldbank_df` mostrando sólo la fila (país) que corresponde a tu número aleatorio**.
+
+>`worldbank_df` es un `data.frame` y, por lo tanto, como cualquier tabla, es susceptible de filtrado ("extraer" filas/columnas). A continuación te explico brevemente cómo funciona el filtrado de un `data.frame` en R. Denominemos `x` a un `data.frame`. Podemos filtrar a `x` mediante índices de extracción de filas `i` y columnas `j`, de la siguiente manera: `x[i,j]`. Como ves, el índice de filas corresponde a la primera parte dentro de los corchetes, y el índice de columnas a la segunda. Así, si necesitas la fila 1 de `x`, con todas sus columnas, escribes `x[1,]`, e igualmente con la columna 1 y todas las filas x[,1]; si sólo necesitas la "celda" que ocupa la fila 1 columna 1, ejecutas `x[1,1]`.
+
+```{r}
+worldbank_df[ ... , ] 
+```
+
+* La columna de **población urbana ocupa la posición 4**. Puedes recuperar dicha columna escribiendo su posición en el índice de columnas. Escribe el código necesario para mostrar la **población urbana del país que te tocó usando posición de columna**.
+
+```{r}
+worldbank_df[ ... , ... ] 
+```
+
+* Puedes usar el nombre de la columna alternativamente, en lugar de su posición. Por ejemplo, la columna de población urbana se denomina **`urban_pop`**. Si escribes dicho nombre entre apóstrofos dentro del índice de columnas, la recuperarías al igual que en el caso anterior. Escribe el código necesario para mostrar la **población urbana del país que te tocó usando nombre de columna**.
+
+```{r}
+worldbank_df[ ... , '...' ] 
+```
+
+## Tejido del documento
+
+* Lee la [sección **"Antes de tejer"**](https://github.com/maestria-geotel-201902/material-de-apoyo/blob/master/ref/guia-minima-de-rmarkdown.md#antes-de-tejer) y la [sección **"Teje"**](https://github.com/maestria-geotel-201902/material-de-apoyo/blob/master/ref/guia-minima-de-rmarkdown.md#teje) de la Guía Mínima de RMarkdown.
+
+* Cuando estés preparado/a, **teje tu `.Rmd`**. Generarás un `.md` nuevo, que contendrá los cambios que hayas hecho, incluyendo los resultados que produzca tu código.
+
+>Como pone la Guía, "Debes estar pendiente a los errores...", porque si el código no se ejecuta correctamente, no se podrá generar el `.md`. Por ello es muy importante que, antes de tejer, hayas ejecutado tu código en la consola y comprobado que genera resultados sin errores.
+
+## Tarea final: *commit*>*push*
+
+* Usa la guía [¿Cómo realizar una asignación?](https://github.com/maestria-geotel-201902/material-de-apoyo/blob/master/ref/como-hacer-una-asignacion.md) para **sincronizar con tu repo remoto**.
+
+Si llegaste hasta aquí sin fallos, pasaste varios mundos. Sin embargo, las probabilidades de que encuentres tropiezos son de más de un 60%. Tropiezos, errores, fallos, "da error" conllevarán aprendizajes.
