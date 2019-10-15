@@ -69,7 +69,7 @@ A partir de este punto, necesitarás editar el archivo `README.Rmd` desde RStudi
 * **Carga el paquete `spData`**. Recuerda que R es sensible a las mayúsculas.
 
 ```{r}
-library(...) #Borra los ... (ni más ni menos) y escribe el nombre del paquete.
+library(spData) #Borra los ... (ni más ni menos) y escribe el nombre del paquete.
 ```
 
 >El símbolo `#` **dentro los bloques de código** precede comentarios. R ignora lo escrito a partir de `#`. Verás que ocasionalmente usaré `#` para colocar pistas sobre lo solicitado.
@@ -79,13 +79,13 @@ library(...) #Borra los ... (ni más ni menos) y escribe el nombre del paquete.
 * **Carga el conjunto de datos `worldbank_df` a memoria**.
 
 ```{r}
-data(...)
+data("worldbank_df")
 ```
 
 * **Imprime en pantalla `worldbank_df`**. Escribe el nombre del objeto para que se despliegue. No olvides ejecutarlo en la consola para probar que funciona.
 
 ```{r}
-...
+worldbank_df
 ```
 
 Si lograste ver un `data.frame` con varias columnas y filas, significa que conseguiste cargar e "imprimir" correctamente el objeto `worldbank_df`.
@@ -93,7 +93,7 @@ Si lograste ver un `data.frame` con varias columnas y filas, significa que conse
 * Para conocer más sobre un objeto en R, usa la función `str` (*structure*). **Explora la estructura de `worldbank_df`**.
 
 ```{r}
-str(...)
+str(worldbank_df)
 ```
 
 ## Varios filtros a `worldbank_df`
@@ -103,19 +103,19 @@ str(...)
 >`worldbank_df` es un `data.frame` y, por lo tanto, como cualquier tabla, es susceptible de filtrado ("extraer" filas/columnas). A continuación te explico brevemente cómo funciona el filtrado de un `data.frame` en R. Denominemos `x` a un `data.frame`. Podemos filtrar a `x` mediante índices de extracción de filas `i` y columnas `j`, de la siguiente manera: `x[i,j]`. Como ves, el índice de filas corresponde a la primera parte dentro de los corchetes, y el índice de columnas a la segunda. Así, si necesitas la fila 1 de `x`, con todas sus columnas, escribes `x[1,]`, e igualmente con la columna 1 y todas las filas x[,1]; si sólo necesitas la "celda" que ocupa la fila 1 columna 1, ejecutas `x[1,1]`.
 
 ```{r}
-worldbank_df[ ... , ] 
+worldbank_df[ 115 , ] 
 ```
 
 * La columna de **población urbana ocupa la posición 4**. Puedes recuperar dicha columna escribiendo su posición en el índice de columnas. Escribe el código necesario para mostrar la **población urbana del país que te tocó usando posición de columna**.
 
 ```{r}
-worldbank_df[ ... , ... ] 
+worldbank_df[ 115 , 4 ] 
 ```
 
 * Puedes usar el nombre de la columna alternativamente, en lugar de su posición. Por ejemplo, la columna de población urbana se denomina **`urban_pop`**. Si escribes dicho nombre entre apóstrofos dentro del índice de columnas, la recuperarías al igual que en el caso anterior. Escribe el código necesario para mostrar la **población urbana del país que te tocó usando nombre de columna**.
 
 ```{r}
-worldbank_df[ ... , '...' ] 
+worldbank_df[ 115 , 'urban_pop' ] 
 ```
 
 ## Tejido del documento
